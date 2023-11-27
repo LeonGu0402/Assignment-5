@@ -1,5 +1,5 @@
 class Player {
-  int speed = 15;
+  int speed = 10;
 
   //position vector
   PVector position;
@@ -22,6 +22,8 @@ class Player {
     if (down == false && up == false){
       idleDisplay();
     }
+    
+    println(position.x, position.y);
   }
 
   //direction movements
@@ -54,13 +56,13 @@ class Player {
     circle(position.x - 11, position.y + 18, 8);
     circle(position.x - 1, position.y + 18, 8);
     circle(position.x + 9, position.y + 18, 8);
-    circle(position.x + 19, position.y + 18, 8);
+    circle(position.x + 20, position.y + 18, 8);
     fill(155, 155, 155);
     rect(position.x + 8, position.y - 3, position.x + 40, position.y + 3);
     fill(0);
     circle(position.x + 40, position.y, 6);
   }
-  //moving up
+  //moving up, facing up
   void upDisplay() {
     strokeWeight(3);
     fill(28, 28, 28);
@@ -75,7 +77,7 @@ class Player {
     fill(0, 0, 128);
     rect(position.x - 15, position.y - 10, position.x + 15, position.y + 10);
   }
-  //moving down
+  //moving down, facing down
   void downDisplay() {
     strokeWeight(3);
     fill(28, 28, 28);

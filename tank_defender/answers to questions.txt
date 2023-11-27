@@ -1,8 +1,8 @@
 19. 
 22.
-25.
-26.
-27.
+25. The difference between a class and an object is, class is the blueprint to build an object, it contains procedures on how this object will be constructed; whereas object is the instance of class, it is an actual entity.
+26. Constructor function is a function inside a class, it defines how to create the object.
+27. The reason for each class having its own tab in Processing is because doing this can make it very easy to find a certain code.
 31.
 32.
 37.
