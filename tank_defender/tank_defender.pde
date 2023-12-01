@@ -3,16 +3,23 @@ boolean up;
 boolean down;
 boolean start;
 boolean end;
+boolean coolDown;
+boolean remove;
 int score;
 int health;
 int enemiesNumber;
+int coolDownTime;
+
 
 //objects
 Player player;
 
-//arraylist of enemies
+//array of enemies
 int totalNumber = 10;
 Enemy enemiesList[] = new Enemy[totalNumber];
+
+//arraylist of bullets
+ArrayList <Bullet> bulletsList;
 
 void setup() {
   size(800, 400);
@@ -22,10 +29,13 @@ void setup() {
   score = 0;
   health = 120;
   enemiesNumber = 2;
+  coolDownTime = 0;
   up = false;
   down = false;
   start = true;
   end = false;
+  coolDown = false;
+  remove = false;
 
   //initilization objects
   player = new Player(40, 200);
@@ -34,10 +44,12 @@ void setup() {
   for (int i = 0; i < enemiesNumber; i += 1) {
     enemiesList[i] = new Enemy();
   }
+
+  //initilization bullet arraylist
+  bulletsList = new ArrayList();
 }
 
 void draw() {
-
   background(113, 188, 225);
 
   //draw the land
@@ -46,11 +58,25 @@ void draw() {
   healthBar();
   //draw the score bar
   scoreBar();
-  
-  //draw and update enemies, detects collisiom
-  for (int i = 0; i < enemiesNumber; i += 1){
+
+  //draw and update enemies, detects collision
+  for (int i = 0; i < enemiesNumber; i += 1) {
     enemiesList[i].display();
     enemiesList[i].update();
+  }
+
+  //call the fire and cooldown fuction
+  fire();
+  cooldown();
+  
+  //call hit detector
+  hit();
+  
+
+  //draw and update bullets
+  for (Bullet bullet : bulletsList) {
+    bullet.update();
+    bullet.display();
   }
 
   //sceen switch
@@ -66,8 +92,6 @@ void draw() {
     //call player drawing, always facing front
     player.updates();
   }
-  
-
 }
 
 
@@ -186,5 +210,41 @@ void mousePressed() {
   }
   if (start == false && end == false) {
     health = health - 10;
+  }
+}
+
+
+//fire and cool down fuction
+void fire() {
+  if (keyPressed && coolDown == false) {
+    if (key == ' ') {
+      Bullet bullet = new Bullet(player.position.x + 40, player.position.y);
+      bulletsList.add(bullet);
+      coolDownTime = 800;
+      coolDown = true;
+    }
+  }
+}
+//provide time interval between each fire
+void cooldown() {
+  coolDownTime = coolDownTime - 20;
+  if (coolDownTime == 0) {
+    coolDown = false;
+  }
+}
+
+
+//hit detector
+void hit() {
+  for (int i = 0; i < enemiesNumber; i += 1) {
+    for (Bullet bullet : bulletsList) {
+      if (dist(enemiesList[i].position.x, enemiesList[i].position.y, bullet.position.x, bullet.position.y) <= 20) {
+        enemiesList[i].reset();
+        //updating the score
+        score = score + 1;
+        println("Gotcha");
+        remove = true;
+      }
+    }
   }
 }

@@ -1,6 +1,6 @@
 class Player {
+  //speed
   int speed = 10;
-
   //position vector
   PVector position;
   //speed vector
@@ -22,8 +22,6 @@ class Player {
     if (down == false && up == false){
       idleDisplay();
     }
-    
-    println(position.x, position.y);
   }
 
   //direction movements
