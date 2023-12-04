@@ -1,4 +1,4 @@
-19. 
+19. The difference between a for loop and a while loop is, for loop iterates for a certain amount of times, while loop iterates based on its condition.
 22.
 25. The difference between a class and an object is, class is the blueprint to build an object, it contains procedures on how this object will be constructed; whereas object is the instance of class, it is an actual entity.
 26. Constructor function is a function inside a class, it defines how to create the object.

@@ -14,8 +14,9 @@ class Enemy {
   //make the enemy move
   void update() {
     position.add(velocity);
-    //remove enemy when it is out of screen
+    //remove enemy and decrease health bar lengthwhen it is out of screen
     if (position.x < -40) {
+      health = health - 10;
       reset();
     }
   }
@@ -52,10 +53,17 @@ class Enemy {
     fill(0);
     circle(position.x - 40, position.y, 6);
   }
-
+  
+  //draw the destory image
+  void destory(){
+    strokeWeight(2);
+    fill(0);
+    circle(position.x, position.y, 50);
+  }
+  
+  //reset the enemy location, the y location is limited so player can hit them
   void reset() {
-    //reset the enemy location, the y location is limited so player can hit them
-    position = new PVector(random(860, 990), int(random(8, 37)) * 10);
+    position = new PVector(random(860, 1200), int(random(8, 37)) * 10);
     velocity = new PVector(speed, 0);
   }
 }
