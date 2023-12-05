@@ -166,13 +166,13 @@ void removeBullet() {
 //show the destory image
 void showDestory() {
   imageShowTime = imageShowTime - 30;
-  if (imageShowTime == 0) {
+  if (imageShowTime <= 0) {
     show = false;
   }
 }
 void explosionImage() {
   if (show == true) {
-    tint(170);
+    tint(200);
     image(explosion, destoryX, destoryY, 50, 50);
   }
 }

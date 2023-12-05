@@ -33,7 +33,7 @@ void setup() {
   //initillizing varibles
   score = 0;
   health = 120;
-  enemiesNumber = 2;
+  enemiesNumber = 3;
   coolDownTime = 0;
   imageShowTime = 0;
   up = false;
@@ -80,8 +80,9 @@ void draw() {
 
   //call hit detector and show destory image 
   hit();
-  showDestory();
   explosionImage();
+  showDestory();
+
 
 
   //draw and update bullets
