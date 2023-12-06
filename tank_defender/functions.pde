@@ -1,5 +1,3 @@
-
-
 //draw the land
 void land() {
   strokeWeight(3);

@@ -33,7 +33,7 @@ void setup() {
   //initillizing varibles
   score = 0;
   health = 120;
-  enemiesNumber = 3;
+  enemiesNumber = 2;
   coolDownTime = 0;
   imageShowTime = 0;
   up = false;
@@ -98,7 +98,7 @@ void draw() {
   if (start == false && end == true) {
     endPage();
   }
-  if (start == false && end == false && health == 0) {
+  if (start == false && end == false && health <= 0) {
     end = true;
   }
 
