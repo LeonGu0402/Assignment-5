@@ -11,6 +11,7 @@ int health;
 int enemiesNumber;
 int coolDownTime;
 int bulletIndex;
+int enemyIndex;
 int imageShowTime;
 int destoryX;
 int destoryY;
@@ -33,7 +34,7 @@ void setup() {
   //initillizing varibles
   score = 0;
   health = 120;
-  enemiesNumber = 2;
+  enemiesNumber = 5;
   coolDownTime = 0;
   imageShowTime = 0;
   up = false;
@@ -91,11 +92,11 @@ void draw() {
     bullet.display();
   }
 
-  //sceen switch
-  if (start == true && end == false) {
+  //scene switch
+  if (startPageSwitch()) {
     startPage();
   }
-  if (start == false && end == true) {
+  if (endPageSwitch()) {
     endPage();
   }
   if (start == false && end == false && health <= 0) {

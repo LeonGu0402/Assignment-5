@@ -139,20 +139,25 @@ void hit() {
         destoryY = int(bullet.position.y);
         //get the index of the bullet
         bulletIndex = bulletsList.indexOf(bullet);
+        //remove the enemy
+        removeEnemy(enemiesList[i]);
         remove = true;
-        enemiesList[i].reset();
         show = true;
         //updating the score
         score = score + 1;
         println("Gotcha");
         //refesh the time and get destory location
         imageShowTime = 800;
+        break;
       }
     }
     removeBullet();
   }
 }
-//fucntion to remove the bullet that hit
+//fucntion to remove the enemy and the bullet that hit
+void removeEnemy(Enemy enemy){
+  enemy.reset();
+}
 void removeBullet() {
   if (remove == true) {
     bulletsList.remove(bulletIndex);
@@ -173,4 +178,20 @@ void explosionImage() {
     tint(200);
     image(explosion, destoryX, destoryY, 50, 50);
   }
+}
+
+
+//scene switch fuction
+//start page
+boolean startPageSwitch(){
+  if (start == true && end == false) {
+    return true;
+  }
+  return false;
+}
+boolean endPageSwitch(){
+  if (start == false && end == true) {
+    return true;
+  }
+  return false;
 }
