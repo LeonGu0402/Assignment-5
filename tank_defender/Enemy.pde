@@ -1,6 +1,6 @@
 class Enemy {
   //speed
-  int speed = -2;
+  float speed = -1.5;
   //position vector
   PVector position;
   //speed vector

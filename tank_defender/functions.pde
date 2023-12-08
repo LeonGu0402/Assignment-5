@@ -1,11 +1,3 @@
-//draw the land
-void land() {
-  strokeWeight(3);
-  fill(52, 140, 49);
-  rect(-10, 60, 810, 410);
-}
-
-
 //direction detection
 void keyPressed() {
   switch(key) {
@@ -40,7 +32,13 @@ void keyReleased() {
 }
 
 
-//the health bar
+//draw the land
+void land() {
+  strokeWeight(3);
+  fill(52, 140, 49);
+  rect(-10, 60, 810, 410);
+}
+//draw the health bar
 void healthBar() {
   //red part
   strokeWeight(3);
@@ -56,7 +54,7 @@ void healthBar() {
   fill(0);
   text("Health", 3, 16);
 }
-//the score bar
+//draw the score bar
 void scoreBar() {
   strokeWeight(3);
   fill(150);
@@ -70,7 +68,7 @@ void scoreBar() {
 }
 
 
-//start page
+//draw start page
 void startPage() {
   background(80, 183, 325);
   textSize(100);
@@ -83,7 +81,7 @@ void startPage() {
   textSize(30);
   text("Click right mouse to start", 225, 350);
 }
-//end page
+//draw end page
 void endPage() {
   background(0);
   textSize(100);
@@ -131,20 +129,21 @@ void cooldown() {
 
 //hit detector
 void hit() {
-  for (int i = 0; i < enemiesNumber; i += 1) {
+  for (Enemy enemy : enemiesList) {
     for (Bullet bullet : bulletsList) {
-      if (dist(enemiesList[i].position.x, enemiesList[i].position.y, bullet.position.x, bullet.position.y) <= 30) {
+      if (dist(enemy.position.x, enemy.position.y, bullet.position.x, bullet.position.y) <= 30) {
         //get the destory location
         destoryX = int(bullet.position.x);
         destoryY = int(bullet.position.y);
         //get the index of the bullet
         bulletIndex = bulletsList.indexOf(bullet);
         //remove the enemy
-        removeEnemy(enemiesList[i]);
+        removeEnemy(enemy);
         remove = true;
         show = true;
         //updating the score
         score = score + 1;
+        scorecount = scorecount + 1;
         println("Gotcha");
         //refesh the time and get destory location
         imageShowTime = 800;
@@ -155,7 +154,7 @@ void hit() {
   }
 }
 //fucntion to remove the enemy and the bullet that hit
-void removeEnemy(Enemy enemy){
+void removeEnemy(Enemy enemy) {
   enemy.reset();
 }
 void removeBullet() {
@@ -164,6 +163,28 @@ void removeBullet() {
     remove = false;
   }
 }
+
+
+//increase enemy function
+void increaseEnemy() {
+  if (scorecount >= 5 && enemiesNumber < 10) {
+    enemiesNumber = enemiesNumber + 1;
+    scorecount = 0;
+    Enemy enemy = new Enemy();
+    enemiesList.add(enemy);
+    
+  }
+}
+
+
+
+
+
+
+
+
+
+
 
 
 //show the destory image
@@ -183,13 +204,14 @@ void explosionImage() {
 
 //scene switch fuction
 //start page
-boolean startPageSwitch(){
+boolean startPageSwitch() {
   if (start == true && end == false) {
     return true;
   }
   return false;
 }
-boolean endPageSwitch(){
+//end page
+boolean endPageSwitch() {
   if (start == false && end == true) {
     return true;
   }

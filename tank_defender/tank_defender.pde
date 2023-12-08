@@ -7,6 +7,7 @@ boolean coolDown;
 boolean remove;
 boolean show;
 int score;
+int scorecount;
 int health;
 int enemiesNumber;
 int coolDownTime;
@@ -20,12 +21,12 @@ PImage explosion;
 //objects
 Player player;
 
-//array of enemies
-int totalNumber = 10;
-Enemy enemiesList[] = new Enemy[totalNumber];
+//array of eplosion particles
 
-//arraylist of bullets
+
+//arraylist of enemies and bullets
 ArrayList <Bullet> bulletsList;
+ArrayList <Enemy> enemiesList;
 
 void setup() {
   size(800, 400);
@@ -33,8 +34,9 @@ void setup() {
   rectMode(CORNERS);
   //initillizing varibles
   score = 0;
+  scorecount = 0;
   health = 120;
-  enemiesNumber = 5;
+  enemiesNumber = 2;
   coolDownTime = 0;
   imageShowTime = 0;
   up = false;
@@ -50,13 +52,16 @@ void setup() {
   //initilization objects
   player = new Player(40, 200);
 
+
+  //initilization enemy and bullet arraylist
+  enemiesList = new ArrayList();
+  bulletsList = new ArrayList();
+  
   //creates new enemey
   for (int i = 0; i < enemiesNumber; i += 1) {
-    enemiesList[i] = new Enemy();
+    Enemy enemy = new Enemy();
+    enemiesList.add(enemy);
   }
-
-  //initilization bullet arraylist
-  bulletsList = new ArrayList();
 }
 
 void draw() {
@@ -69,28 +74,29 @@ void draw() {
   //draw the score bar
   scoreBar();
 
+
   //draw and update enemies, detects collision
-  for (int i = 0; i < enemiesNumber; i += 1) {
-    enemiesList[i].display();
-    enemiesList[i].update();
+  for (Enemy enemy : enemiesList) {
+    enemy.display();
+    enemy.update();
   }
-
-  //call the fire and cooldown fuction
-  fire();
-  cooldown();
-
-  //call hit detector and show destory image 
-  hit();
-  explosionImage();
-  showDestory();
-
-
-
   //draw and update bullets
   for (Bullet bullet : bulletsList) {
     bullet.update();
     bullet.display();
   }
+
+
+  //call the fire and cooldown fuction
+  fire();
+  cooldown();
+  //call hit detector and show destory image 
+  hit();
+  explosionImage();
+  showDestory();
+  //call increase enemy fuction
+  increaseEnemy();
+
 
   //scene switch
   if (startPageSwitch()) {
@@ -102,7 +108,6 @@ void draw() {
   if (start == false && end == false && health <= 0) {
     end = true;
   }
-
   //game states drawing
   if (start == false && end == false) {
     //call player drawing, always facing front

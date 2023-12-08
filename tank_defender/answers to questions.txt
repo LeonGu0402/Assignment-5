@@ -1,8 +1,8 @@
 19. The difference between a for loop and a while loop is, for loop iterates for a certain amount of times, while loop iterates based on its condition.
-22.
+22. Parameters are the varibles inside the method definition. Arugument is the actual data that is being passed into the parameter when call the method.
 25. The difference between a class and an object is, class is the blueprint to build an object, it contains procedures on how this object will be constructed; whereas object is the instance of class, it is an actual entity.
 26. Constructor function is a function inside a class, it defines how to create the object.
 27. The reason for each class having its own tab in Processing is because doing this can make it very easy to find a certain code.
-31.
-32.
-37.
+31. ArrayList have the different syntax with array; the length of an array is presetted while arraylist have not a specific length. 
+32. Going thought a list backwards will have the index reversed, therefore when calls objects, it is going from last item to the first item in the list.
+37. When you are creating physics effact, want to simplify code and have math operation repeatly,using PVector is better than float values.
