@@ -2,13 +2,14 @@ class Bullet {
   //speed
   int speed = 6;
   //position vector
-  PVector position = new PVector();
+  PVector position;
   //speed vector
-  PVector velocity = new PVector(speed, 0);
+  PVector velocity;
 
   //constructor
   Bullet(float x, float y) {
     position = new PVector(x, y);
+    velocity = new PVector(speed, 0);
   }
 
   //bullet move

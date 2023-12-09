@@ -145,8 +145,12 @@ void hit() {
         score = score + 1;
         scorecount = scorecount + 1;
         println("Gotcha");
-        //refesh the time and get destory location
+        //refesh the time and get destory location for particle
         imageShowTime = 800;
+        //initilize particle
+        for (int i = 0; i < particlesNumber; i += 1) {
+          particlesList[i] = new Particle();
+        }
         break;
       }
     }
@@ -172,19 +176,8 @@ void increaseEnemy() {
     scorecount = 0;
     Enemy enemy = new Enemy();
     enemiesList.add(enemy);
-    
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 //show the destory image
@@ -194,11 +187,31 @@ void showDestory() {
     show = false;
   }
 }
-void explosionImage() {
+void explosion() {
   if (show == true) {
     tint(200);
     image(explosion, destoryX, destoryY, 50, 50);
   }
+}
+//functions to draw and up
+void drawParticle() {
+  if (show == true) {
+    for (int i = 0; i < particlesNumber; i += 1) {
+      particlesList[i].display();
+      particlesList[i].update();
+    }
+  }
+}
+
+
+//show house images
+void house1(int x, int y) {
+  tint(255);
+  image(house1, x, y, 80, 80);
+}
+void house2(int x, int y) {
+  tint(255);
+  image(house2, x, y, 50, 50);
 }
 
 

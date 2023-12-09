@@ -4,11 +4,12 @@ class Player {
   //position vector
   PVector position;
   //speed vector
-  PVector velocity = new PVector(0, speed);
+  PVector velocity;
 
   //constructor
   Player(int posX, int posY) {
     position = new PVector(posX, posY);
+    velocity = new PVector(0, speed);
   }
 
   //updates

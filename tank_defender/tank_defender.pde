@@ -17,12 +17,15 @@ int imageShowTime;
 int destoryX;
 int destoryY;
 PImage explosion;
+PImage house1;
+PImage house2;
 
 //objects
 Player player;
 
 //array of eplosion particles
-
+int particlesNumber = 50;
+Particle particlesList[] = new Particle[particlesNumber];
 
 //arraylist of enemies and bullets
 ArrayList <Bullet> bulletsList;
@@ -39,6 +42,8 @@ void setup() {
   enemiesNumber = 2;
   coolDownTime = 0;
   imageShowTime = 0;
+  destoryX = 0;
+  destoryY = 0;
   up = false;
   down = false;
   start = true;
@@ -47,16 +52,17 @@ void setup() {
   remove = false;
   show = false;
   explosion = loadImage("explosion.png");
+  house1 = loadImage("house1.png");
+  house2= loadImage("house2.png");
   imageMode(CENTER);
 
-  //initilization objects
+  //initilize player
   player = new Player(40, 200);
 
-
-  //initilization enemy and bullet arraylist
+  //initilize enemy and bullet arraylist
   enemiesList = new ArrayList();
   bulletsList = new ArrayList();
-  
+
   //creates new enemey
   for (int i = 0; i < enemiesNumber; i += 1) {
     Enemy enemy = new Enemy();
@@ -69,6 +75,15 @@ void draw() {
 
   //draw the land
   land();
+  //show house
+  house1(100, 30);
+  house2(150, 45);
+  house1(300, 30);
+  house2(790, 45);
+  house1(570, 30);
+  house2(400, 45);
+  house1(740, 30);
+  house2(480, 45);
   //draw the health bar
   healthBar();
   //draw the score bar
@@ -90,10 +105,15 @@ void draw() {
   //call the fire and cooldown fuction
   fire();
   cooldown();
-  //call hit detector and show destory image 
+  //call hit detector and show destory image and particle
   hit();
-  explosionImage();
+  explosion();
   showDestory();
+  drawParticle();
+  //draw and update particles
+
+  
+ 
   //call increase enemy fuction
   increaseEnemy();
 
