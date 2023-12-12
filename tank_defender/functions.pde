@@ -82,6 +82,7 @@ void startPage() {
   text("Click right mouse to start", 225, 350);
 }
 //draw end page
+//citation: endpage design is inspired from my last assassignment end page
 void endPage() {
   background(0);
   textSize(100);

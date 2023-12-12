@@ -7,6 +7,7 @@ class Enemy {
   PVector velocity;
 
   //constructor
+  //citation: the reset fuction is inspired from my last assassignment enemy class
   Enemy() {
     reset();
   }
